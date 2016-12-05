@@ -1,13 +1,21 @@
 #!/usr/bin/python
 def day1(str):
     cmds = [s.strip() for s in str.split(',')]
-    i = complex(0,1)
-    nums = [[(i if c[0] is 'L' else -i),int(c[1:])] for c in cmds]
+    nums = [[(1j if c[0] is 'L' else -1j),int(c[1:])] for c in cmds]
+    dir = 1j
     z = complex(0,0)
-    for n in reversed(nums):
-        z = n[0]*(n[1]*i + z)
-    return (abs(z.real)+ abs(z.imag))
+    visitedLocations = [0]
+    firstDup = None
+    for n in nums:
+        dir *= n[0] #turn
+        for _ in range(n[1]):
+            z += dir #walk one unit
+            if firstDup is None and z in visitedLocations:
+                firstDup = z
+            visitedLocations.append(z)
+    return int(abs(z.real)+ abs(z.imag)),int(abs(firstDup.real)+abs(firstDup.imag))
 
 if __name__=='__main__':
     import sys
-    print day1(' '.join(sys.argv[1:]))
+    with open(sys.argv[1]) as f:
+        print day1(f.read())
