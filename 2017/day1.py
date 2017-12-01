@@ -8,7 +8,6 @@
     $ python day1.py input1.txt
 """
 import sys
-import unittest
 
 
 def inverse_captcha(sequence):
@@ -22,21 +21,6 @@ def inverse_captcha_half(sequence):
     mask = [int(a) == int(b) for a, b in zip(sequence, ''.join([sequence[halfway_index:], sequence[:halfway_index]]))]
     result = sum([int(s) if m else 0 for s, m in zip(sequence, mask)])
     return result
-
-
-class TestDay1(unittest.TestCase):
-    def test_part_A(self):
-        self.assertEqual(inverse_captcha('1122'), 3)
-        self.assertEqual(inverse_captcha('1111'), 4)
-        self.assertEqual(inverse_captcha('1234'), 0)
-        self.assertEqual(inverse_captcha('91212129'), 9)
-
-    def test_part_B(self):
-        self.assertEqual(inverse_captcha_half('1212'), 6)
-        self.assertEqual(inverse_captcha_half('1221'), 0)
-        self.assertEqual(inverse_captcha_half('123425'), 4)
-        self.assertEqual(inverse_captcha_half('123123'), 12)
-        self.assertEqual(inverse_captcha_half('12131415'), 4)
 
 
 if __name__ == '__main__':
