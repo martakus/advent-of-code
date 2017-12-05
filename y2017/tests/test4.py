@@ -2,7 +2,7 @@ import unittest
 from y2017.day4 import *
 
 
-class TestDay1(unittest.TestCase):
+class TestDay4(unittest.TestCase):
     def test_part_A(self):
         self.assertEqual(check_passphrase('aa bb cc dd ee'), True)
         self.assertEqual(check_passphrase('aa bb cc dd aa'), False)

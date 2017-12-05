@@ -2,7 +2,7 @@ import unittest
 from y2017.day3 import *
 
 
-class TestDay1(unittest.TestCase):
+class TestDay3(unittest.TestCase):
     def test_part_A(self):
         self.assertEqual(spiral_steps(1), 0)
         self.assertEqual(spiral_steps(12), 3)
